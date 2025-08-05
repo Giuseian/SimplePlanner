@@ -25,11 +25,12 @@
 -- Found nav_msgs: 5.3.6 (/opt/ros/jazzy/share/nav_msgs/cmake)
 -- Found tf2: 0.36.12 (/opt/ros/jazzy/share/tf2/cmake)
 -- Found tf2_ros: 0.36.12 (/opt/ros/jazzy/share/tf2_ros/cmake)
--- Configuring done (2.3s)
+-- Configuring done (2.9s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner
-[ 33%] [32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o[0m
-[ 66%] [32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/main.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/map_utils.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/main.cpp.o[0m
 [100%] [32m[1mLinking CXX executable simple_planner_node[0m
 [100%] Built target simple_planner_node
 -- Install configuration: ""

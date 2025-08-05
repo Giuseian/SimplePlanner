@@ -234,6 +234,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_planner_node.dir/build.make CMakeFiles/simple_planner_node.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/map_utils.o: src/map_utils.cpp.o
+.PHONY : src/map_utils.o
+
+# target to build an object file
+src/map_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_planner_node.dir/build.make CMakeFiles/simple_planner_node.dir/src/map_utils.cpp.o
+.PHONY : src/map_utils.cpp.o
+
+src/map_utils.i: src/map_utils.cpp.i
+.PHONY : src/map_utils.i
+
+# target to preprocess a source file
+src/map_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_planner_node.dir/build.make CMakeFiles/simple_planner_node.dir/src/map_utils.cpp.i
+.PHONY : src/map_utils.cpp.i
+
+src/map_utils.s: src/map_utils.cpp.s
+.PHONY : src/map_utils.s
+
+# target to generate assembly for a file
+src/map_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_planner_node.dir/build.make CMakeFiles/simple_planner_node.dir/src/map_utils.cpp.s
+.PHONY : src/map_utils.cpp.s
+
 src/simple_planner_node.o: src/simple_planner_node.cpp.o
 .PHONY : src/simple_planner_node.o
 
@@ -277,6 +301,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/map_utils.o"
+	@echo "... src/map_utils.i"
+	@echo "... src/map_utils.s"
 	@echo "... src/simple_planner_node.o"
 	@echo "... src/simple_planner_node.i"
 	@echo "... src/simple_planner_node.s"

@@ -1,64 +1,34 @@
-// #include <rclcpp/rclcpp.hpp>
-// #include <nav_msgs/msg/occupancy_grid.hpp>
-// #include <nav_msgs/msg/path.hpp>
-// #include <geometry_msgs/msg/pose_stamped.hpp>
-// #include <tf2_ros/transform_listener.h>
-// #include <tf2_ros/buffer.h>
-
-// class SimplePlanner : public rclcpp::Node
-// {
-// public:
-//   SimplePlanner()
-//   : Node("simple_planner")
-//   {
-//     RCLCPP_INFO(this->get_logger(), "Simple Planner Node initialized!");
-//     // In next steps you'll initialize subscribers, TF, etc.
-//   }
-
-// private:
-//   // -- Step 1.2 placeholders --
-
-//   // Subscribers
-//   rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr map_sub_;
-//   rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr goal_sub_;
-
-//   // Publisher
-//   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub_;
-
-//   // Timer
-//   rclcpp::TimerBase::SharedPtr timer_;
-
-//   // TF2 listener
-//   std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
-//   std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
-
-//   // Flags
-//   bool map_received_ = false;
-//   bool goal_received_ = false;
-//   bool robot_pose_valid_ = false;
-
-//   // Data storage
-//   nav_msgs::msg::OccupancyGrid current_map_;
-//   geometry_msgs::msg::PoseStamped goal_pose_;
-//   geometry_msgs::msg::PoseStamped robot_pose_;
-// };
-
-// int main(int argc, char **argv)
-// {
-//   rclcpp::init(argc, argv);
-//   auto node = std::make_shared<SimplePlanner>();
-//   rclcpp::spin(node);
-//   rclcpp::shutdown();
-//   return 0;
-// }
-
-
 #include "simple_planner/simple_planner.hpp"
+#include "simple_planner/map_utils.hpp"  // Include parser
+
+using std::placeholders::_1;
+using namespace simple_planner::map_utils;
 
 SimplePlanner::SimplePlanner()
 : rclcpp::Node("simple_planner")
 {
   RCLCPP_INFO(this->get_logger(), "Simple Planner Node initialized!");
-  // In future steps: initialize publishers, subscribers, etc.
+
+  // Initialize map subscriber
+//   map_sub_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
+//     "/map",
+//     rclcpp::QoS(10),
+//     std::bind(&SimplePlanner::mapCallback, this, _1));
+// }
+
+  map_sub_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
+    "/map",
+    rclcpp::QoS(rclcpp::KeepLast(1)).transient_local().reliable(),
+    std::bind(&SimplePlanner::mapCallback, this, _1));
 }
 
+void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg)
+{
+  RCLCPP_WARN(this->get_logger(), "ENTERED mapCallback");
+  map_data_ = parseOccupancyGrid(*msg);
+  map_received_ = true;
+
+  RCLCPP_INFO(this->get_logger(),
+              "Map received: %d x %d @ %.3f m resolution",
+              map_data_.width, map_data_.height, map_data_.resolution);
+}
