@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/opt/ros/jazzy/include",
+                "/usr/include",
+                "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compileCommands": [
+                "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/compile_commands.json"
+            ]
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,32 @@
+[0.007s] Invoking command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_INSTALL_PREFIX=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner
+[0.163s] -- The C compiler identification is GNU 13.3.0
+[0.378s] -- The CXX compiler identification is GNU 13.3.0
+[0.426s] -- Detecting C compiler ABI info
+[0.624s] -- Detecting C compiler ABI info - done
+[0.645s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.655s] -- Detecting C compile features
+[0.656s] -- Detecting C compile features - done
+[0.686s] -- Detecting CXX compiler ABI info
+[1.013s] -- Detecting CXX compiler ABI info - done
+[1.056s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.059s] -- Detecting CXX compile features
+[1.060s] -- Detecting CXX compile features - done
+[1.095s] [31mCMake Error at CMakeLists.txt:8 (find_package):
+[1.095s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[1.096s]   has asked CMake to find a package configuration file provided by
+[1.096s]   "ament_cmake", but CMake did not find one.
+[1.096s] 
+[1.097s]   Could not find a package configuration file provided by "ament_cmake" with
+[1.097s]   any of the following names:
+[1.097s] 
+[1.097s]     ament_cmakeConfig.cmake
+[1.098s]     ament_cmake-config.cmake
+[1.098s] 
+[1.098s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[1.098s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[1.099s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[1.099s]   has been installed.
+[1.099s] 
+[1.100s] [0m
+[1.100s] -- Configuring incomplete, errors occurred!
+[1.106s] Invoked command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner' returned '1': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_INSTALL_PREFIX=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner

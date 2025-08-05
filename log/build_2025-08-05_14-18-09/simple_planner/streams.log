@@ -1,0 +1,45 @@
+[0.006s] Invoking command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_INSTALL_PREFIX=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner
+[0.025s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.392s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.589s] -- Found rclcpp: 28.1.10 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.687s] -- Found rosidl_generator_c: 4.6.5 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.705s] -- Found rosidl_generator_cpp: 4.6.5 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.725s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.743s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.791s] -- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[0.792s] -- Found rmw_fastrtps_cpp: 8.4.2 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[0.975s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[1.033s] -- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") 
+[1.116s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.314s] -- Found nav_msgs: 5.3.6 (/opt/ros/jazzy/share/nav_msgs/cmake)
+[1.354s] -- Found tf2: 0.36.12 (/opt/ros/jazzy/share/tf2/cmake)
+[1.356s] -- Found tf2_ros: 0.36.12 (/opt/ros/jazzy/share/tf2_ros/cmake)
+[1.509s] -- Configuring done (1.5s)
+[1.525s] -- Generating done (0.0s)
+[1.527s] -- Build files have been written to: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner
+[1.538s] Invoked command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_INSTALL_PREFIX=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner
+[1.538s] Invoking command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner -- -j12 -l12
+[1.644s] [ 50%] [32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o[0m
+[3.908s] [100%] [32m[1mLinking CXX executable simple_planner_node[0m
+[4.086s] [100%] Built target simple_planner_node
+[4.109s] Invoked command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner -- -j12 -l12
+[4.131s] Invoking command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner
+[4.154s] -- Install configuration: ""
+[4.154s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/lib/simple_planner/simple_planner_node
+[4.155s] -- Set non-toolchain portion of runtime path of "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/lib/simple_planner/simple_planner_node" to ""
+[4.155s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/package_run_dependencies/simple_planner
+[4.156s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/parent_prefix_path/simple_planner
+[4.156s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/ament_prefix_path.sh
+[4.157s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/ament_prefix_path.dsv
+[4.157s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/path.sh
+[4.158s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/path.dsv
+[4.158s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.bash
+[4.158s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.sh
+[4.158s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.zsh
+[4.159s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.dsv
+[4.159s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/package.dsv
+[4.159s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/packages/simple_planner
+[4.159s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/cmake/simple_plannerConfig.cmake
+[4.160s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/cmake/simple_plannerConfig-version.cmake
+[4.160s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/package.xml
+[4.163s] Invoked command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner
