@@ -69,10 +69,24 @@ include CMakeFiles/simple_planner_node.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/simple_planner_node.dir/flags.make
 
+CMakeFiles/simple_planner_node.dir/src/main.cpp.o: CMakeFiles/simple_planner_node.dir/flags.make
+CMakeFiles/simple_planner_node.dir/src/main.cpp.o: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/src/main.cpp
+CMakeFiles/simple_planner_node.dir/src/main.cpp.o: CMakeFiles/simple_planner_node.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/simple_planner_node.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simple_planner_node.dir/src/main.cpp.o -MF CMakeFiles/simple_planner_node.dir/src/main.cpp.o.d -o CMakeFiles/simple_planner_node.dir/src/main.cpp.o -c /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/src/main.cpp
+
+CMakeFiles/simple_planner_node.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/simple_planner_node.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/src/main.cpp > CMakeFiles/simple_planner_node.dir/src/main.cpp.i
+
+CMakeFiles/simple_planner_node.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simple_planner_node.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/src/main.cpp -o CMakeFiles/simple_planner_node.dir/src/main.cpp.s
+
 CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o: CMakeFiles/simple_planner_node.dir/flags.make
 CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/src/simple_planner_node.cpp
 CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o: CMakeFiles/simple_planner_node.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o -MF CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o.d -o CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o -c /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/src/simple_planner_node.cpp
 
 CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.i: cmake_force
@@ -85,11 +99,13 @@ CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.s: cmake_force
 
 # Object files for target simple_planner_node
 simple_planner_node_OBJECTS = \
+"CMakeFiles/simple_planner_node.dir/src/main.cpp.o" \
 "CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o"
 
 # External object files for target simple_planner_node
 simple_planner_node_EXTERNAL_OBJECTS =
 
+simple_planner_node: CMakeFiles/simple_planner_node.dir/src/main.cpp.o
 simple_planner_node: CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o
 simple_planner_node: CMakeFiles/simple_planner_node.dir/build.make
 simple_planner_node: /opt/ros/jazzy/lib/libnav_msgs__rosidl_typesupport_fastrtps_c.so
@@ -212,7 +228,7 @@ simple_planner_node: /opt/ros/jazzy/lib/libunique_identifier_msgs__rosidl_genera
 simple_planner_node: /opt/ros/jazzy/lib/librosidl_runtime_c.so
 simple_planner_node: /opt/ros/jazzy/lib/librcutils.so
 simple_planner_node: CMakeFiles/simple_planner_node.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable simple_planner_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable simple_planner_node"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/simple_planner_node.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

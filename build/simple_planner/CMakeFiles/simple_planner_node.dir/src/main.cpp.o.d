@@ -1,7 +1,6 @@
-CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o: \
- /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/src/simple_planner_node.cpp \
+CMakeFiles/simple_planner_node.dir/src/main.cpp.o: \
+ /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/src/main.cpp \
  /usr/include/stdc-predef.h \
- /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/include/simple_planner/simple_planner.hpp \
  /opt/ros/jazzy/include/rclcpp/rclcpp/rclcpp.hpp \
  /usr/include/c++/13/csignal \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -687,6 +686,7 @@ CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o: \
  /opt/ros/jazzy/include/rclcpp/rclcpp/parameter_map.hpp \
  /opt/ros/jazzy/include/rclcpp/rclcpp/parameter_event_handler.hpp \
  /opt/ros/jazzy/include/rclcpp/rclcpp/parameter_service.hpp \
+ /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/include/simple_planner/simple_planner.hpp \
  /opt/ros/jazzy/include/nav_msgs/nav_msgs/msg/occupancy_grid.hpp \
  /opt/ros/jazzy/include/nav_msgs/nav_msgs/msg/detail/occupancy_grid__struct.hpp \
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \

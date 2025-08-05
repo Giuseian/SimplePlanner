@@ -15,7 +15,9 @@ find_package(tf2_ros REQUIRED)
 
 include_directories(include)
 
-add_executable(simple_planner_node src/simple_planner_node.cpp)
+add_executable(simple_planner_node 
+  src/main.cpp
+  src/simple_planner_node.cpp)
 
 ament_target_dependencies(simple_planner_node
   rclcpp

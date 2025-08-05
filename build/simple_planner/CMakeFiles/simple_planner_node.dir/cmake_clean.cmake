@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/simple_planner_node.dir/src/main.cpp.o"
+  "CMakeFiles/simple_planner_node.dir/src/main.cpp.o.d"
   "CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o"
   "CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o.d"
   "simple_planner_node"

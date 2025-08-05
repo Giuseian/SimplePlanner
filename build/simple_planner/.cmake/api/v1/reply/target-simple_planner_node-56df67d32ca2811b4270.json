@@ -86,13 +86,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 29,
+				"line" : 31,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 20,
+				"line" : 22,
 				"parent" : 0
 			},
 			{
@@ -934,7 +934,8 @@
 			},
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -1605,12 +1606,19 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1
 			]
 		}
 	],
 	"sources" : 
 	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
