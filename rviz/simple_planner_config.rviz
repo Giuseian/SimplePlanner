@@ -1,0 +1,11 @@
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Name: Grid
+      Class: rviz_default_plugins/Grid
+    - Name: Map
+      Class: rviz_default_plugins/Map
+      Topic: /map
+  Enabled: true
+  Global Options:
+    Fixed Frame: map

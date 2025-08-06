@@ -17,31 +17,34 @@ public:
 
 private:
   // Callback for map
-  void mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg);  // <-- Add this
+  void mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg);  // 2.1 
+  void goalCallback(const geometry_msgs::msg::PoseStamped::SharedPtr msg);  // 2.2
+  void timerCallback();  // 2.3
+
 
   // Subscribers
-  rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr map_sub_;
-  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr goal_sub_;
+  rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr map_sub_;  // 2.1 
+  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr goal_sub_;  // 2.2 
 
   // Publisher
   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub_;
 
   // Timer
-  rclcpp::TimerBase::SharedPtr timer_;
+  rclcpp::TimerBase::SharedPtr timer_;  // 2.3 
 
   // TF2 listener
-  std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
-  std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
+  std::shared_ptr<tf2_ros::Buffer> tf_buffer_;    // 2.3 
+  std::shared_ptr<tf2_ros::TransformListener> tf_listener_;   // 2.3 
 
   // Flags
-  bool map_received_ = false;
-  bool goal_received_ = false;
-  bool robot_pose_valid_ = false;
+  bool map_received_ = false;  // 2.1
+  bool goal_received_ = false;  // 2.2
+  bool robot_pose_valid_ = false;  // 2.3 
 
   // Data storage
-  nav_msgs::msg::OccupancyGrid current_map_;
-  geometry_msgs::msg::PoseStamped goal_pose_;
-  geometry_msgs::msg::PoseStamped robot_pose_;
+  nav_msgs::msg::OccupancyGrid current_map_;   // 2.1
+  geometry_msgs::msg::PoseStamped goal_pose_;  // 2.2
+  geometry_msgs::msg::PoseStamped robot_pose_;   // 2.3 
 
   // Parsed map
   simple_planner::map_utils::MapData map_data_;  // <-- Add this

@@ -1,0 +1,26 @@
+[0.008s] Invoking command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner -- -j12 -l12
+[0.121s] [ 25%] [32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/main.cpp.o[0m
+[0.122s] [ 50%] [32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o[0m
+[7.964s] [ 75%] [32m[1mLinking CXX executable simple_planner_node[0m
+[8.406s] [100%] Built target simple_planner_node
+[8.423s] Invoked command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner -- -j12 -l12
+[8.438s] Invoking command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner
+[8.447s] -- Install configuration: ""
+[8.448s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/lib/simple_planner/simple_planner_node
+[8.453s] -- Set non-toolchain portion of runtime path of "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/lib/simple_planner/simple_planner_node" to ""
+[8.453s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/package_run_dependencies/simple_planner
+[8.453s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/parent_prefix_path/simple_planner
+[8.453s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/ament_prefix_path.sh
+[8.453s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/ament_prefix_path.dsv
+[8.454s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/path.sh
+[8.454s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/path.dsv
+[8.454s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.bash
+[8.454s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.sh
+[8.454s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.zsh
+[8.454s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.dsv
+[8.454s] -- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/package.dsv
+[8.454s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/packages/simple_planner
+[8.455s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/cmake/simple_plannerConfig.cmake
+[8.455s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/cmake/simple_plannerConfig-version.cmake
+[8.455s] -- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/package.xml
+[8.456s] Invoked command in '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner
