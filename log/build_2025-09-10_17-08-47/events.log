@@ -1,0 +1,149 @@
+[0.000000] (-) TimerEvent: {}
+[0.002361] (simple_planner) JobQueued: {'identifier': 'simple_planner', 'dependencies': OrderedDict()}
+[0.002651] (simple_planner) JobStarted: {'identifier': 'simple_planner'}
+[0.042134] (simple_planner) JobProgress: {'identifier': 'simple_planner', 'progress': 'cmake'}
+[0.044917] (simple_planner) JobProgress: {'identifier': 'simple_planner', 'progress': 'build'}
+[0.047492] (simple_planner) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner', '--', '-j12', '-l12'], 'cwd': '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner', 'env': OrderedDict({'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'giuseppina-iannotti', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/giuseppina-iannotti', 'CHROME_DESKTOP': 'code.desktop', 'TERM_PROGRAM_VERSION': '1.102.3', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/code.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/code/code', 'MANAGERPID': '2446', 'SYSTEMD_EXEC_PID': '2892', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3648', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'giuseppina-iannotti', 'JOURNAL_STREAM': '9:985', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'giuseppina-iannotti', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/giuseppina-iannotti/.config/Code/User/globalStorage/github.copilot-chat/debugCommand', 'SESSION_MANAGER': 'local/giuse-Precision-3570:@/tmp/.ICE-unix/2823,unix/giuse-Precision-3570:/tmp/.ICE-unix/2823', 'INVOCATION_ID': '2af96c0d33084ddea71d2c865c49015e', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-3639821186.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.099123] (-) TimerEvent: {}
+[0.199743] (-) TimerEvent: {}
+[0.246808] (simple_planner) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/main.cpp.o\x1b[0m\n'}
+[0.251107] (simple_planner) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o\x1b[0m\n'}
+[0.300059] (-) TimerEvent: {}
+[0.400858] (-) TimerEvent: {}
+[0.501275] (-) TimerEvent: {}
+[0.601707] (-) TimerEvent: {}
+[0.702046] (-) TimerEvent: {}
+[0.802407] (-) TimerEvent: {}
+[0.902778] (-) TimerEvent: {}
+[1.003177] (-) TimerEvent: {}
+[1.103644] (-) TimerEvent: {}
+[1.204108] (-) TimerEvent: {}
+[1.304773] (-) TimerEvent: {}
+[1.405189] (-) TimerEvent: {}
+[1.505833] (-) TimerEvent: {}
+[1.606180] (-) TimerEvent: {}
+[1.706702] (-) TimerEvent: {}
+[1.807153] (-) TimerEvent: {}
+[1.907547] (-) TimerEvent: {}
+[2.007857] (-) TimerEvent: {}
+[2.108290] (-) TimerEvent: {}
+[2.208728] (-) TimerEvent: {}
+[2.309031] (-) TimerEvent: {}
+[2.409372] (-) TimerEvent: {}
+[2.509800] (-) TimerEvent: {}
+[2.610233] (-) TimerEvent: {}
+[2.710685] (-) TimerEvent: {}
+[2.811054] (-) TimerEvent: {}
+[2.911389] (-) TimerEvent: {}
+[3.011821] (-) TimerEvent: {}
+[3.112151] (-) TimerEvent: {}
+[3.212577] (-) TimerEvent: {}
+[3.312973] (-) TimerEvent: {}
+[3.413395] (-) TimerEvent: {}
+[3.513756] (-) TimerEvent: {}
+[3.614150] (-) TimerEvent: {}
+[3.714476] (-) TimerEvent: {}
+[3.814784] (-) TimerEvent: {}
+[3.915253] (-) TimerEvent: {}
+[4.015590] (-) TimerEvent: {}
+[4.115905] (-) TimerEvent: {}
+[4.216233] (-) TimerEvent: {}
+[4.316658] (-) TimerEvent: {}
+[4.417010] (-) TimerEvent: {}
+[4.517369] (-) TimerEvent: {}
+[4.617749] (-) TimerEvent: {}
+[4.718114] (-) TimerEvent: {}
+[4.818472] (-) TimerEvent: {}
+[4.918845] (-) TimerEvent: {}
+[5.019201] (-) TimerEvent: {}
+[5.119549] (-) TimerEvent: {}
+[5.219912] (-) TimerEvent: {}
+[5.320351] (-) TimerEvent: {}
+[5.420769] (-) TimerEvent: {}
+[5.521059] (-) TimerEvent: {}
+[5.621479] (-) TimerEvent: {}
+[5.721896] (-) TimerEvent: {}
+[5.822290] (-) TimerEvent: {}
+[5.922760] (-) TimerEvent: {}
+[6.023231] (-) TimerEvent: {}
+[6.123644] (-) TimerEvent: {}
+[6.224071] (-) TimerEvent: {}
+[6.324489] (-) TimerEvent: {}
+[6.424758] (-) TimerEvent: {}
+[6.525076] (-) TimerEvent: {}
+[6.625499] (-) TimerEvent: {}
+[6.725933] (-) TimerEvent: {}
+[6.826347] (-) TimerEvent: {}
+[6.926768] (-) TimerEvent: {}
+[7.027185] (-) TimerEvent: {}
+[7.127606] (-) TimerEvent: {}
+[7.227918] (-) TimerEvent: {}
+[7.328335] (-) TimerEvent: {}
+[7.428722] (-) TimerEvent: {}
+[7.529016] (-) TimerEvent: {}
+[7.629312] (-) TimerEvent: {}
+[7.729734] (-) TimerEvent: {}
+[7.830145] (-) TimerEvent: {}
+[7.930512] (-) TimerEvent: {}
+[8.030879] (-) TimerEvent: {}
+[8.131182] (-) TimerEvent: {}
+[8.231509] (-) TimerEvent: {}
+[8.331741] (-) TimerEvent: {}
+[8.432021] (-) TimerEvent: {}
+[8.532430] (-) TimerEvent: {}
+[8.632874] (-) TimerEvent: {}
+[8.733280] (-) TimerEvent: {}
+[8.833618] (-) TimerEvent: {}
+[8.934004] (-) TimerEvent: {}
+[9.034404] (-) TimerEvent: {}
+[9.134687] (-) TimerEvent: {}
+[9.235099] (-) TimerEvent: {}
+[9.335498] (-) TimerEvent: {}
+[9.435803] (-) TimerEvent: {}
+[9.536258] (-) TimerEvent: {}
+[9.636699] (-) TimerEvent: {}
+[9.737160] (-) TimerEvent: {}
+[9.837590] (-) TimerEvent: {}
+[9.937976] (-) TimerEvent: {}
+[10.038360] (-) TimerEvent: {}
+[10.138678] (-) TimerEvent: {}
+[10.239102] (-) TimerEvent: {}
+[10.339547] (-) TimerEvent: {}
+[10.440007] (-) TimerEvent: {}
+[10.540367] (-) TimerEvent: {}
+[10.610273] (simple_planner) StdoutLine: {'line': b'[ 75%] \x1b[32m\x1b[1mLinking CXX executable simple_planner_node\x1b[0m\n'}
+[10.640563] (-) TimerEvent: {}
+[10.741116] (-) TimerEvent: {}
+[10.841524] (-) TimerEvent: {}
+[10.942047] (-) TimerEvent: {}
+[11.042929] (-) TimerEvent: {}
+[11.143484] (-) TimerEvent: {}
+[11.243955] (-) TimerEvent: {}
+[11.344518] (-) TimerEvent: {}
+[11.444990] (-) TimerEvent: {}
+[11.457406] (simple_planner) StdoutLine: {'line': b'[100%] Built target simple_planner_node\n'}
+[11.484588] (simple_planner) CommandEnded: {'returncode': 0}
+[11.486728] (simple_planner) JobProgress: {'identifier': 'simple_planner', 'progress': 'install'}
+[11.512442] (simple_planner) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner'], 'cwd': '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner', 'env': OrderedDict({'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'giuseppina-iannotti', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/giuseppina-iannotti', 'CHROME_DESKTOP': 'code.desktop', 'TERM_PROGRAM_VERSION': '1.102.3', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/code.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/code/code', 'MANAGERPID': '2446', 'SYSTEMD_EXEC_PID': '2892', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3648', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'giuseppina-iannotti', 'JOURNAL_STREAM': '9:985', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'giuseppina-iannotti', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/giuseppina-iannotti/.config/Code/User/globalStorage/github.copilot-chat/debugCommand', 'SESSION_MANAGER': 'local/giuse-Precision-3570:@/tmp/.ICE-unix/2823,unix/giuse-Precision-3570:/tmp/.ICE-unix/2823', 'INVOCATION_ID': '2af96c0d33084ddea71d2c865c49015e', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-3639821186.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[11.533768] (simple_planner) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[11.534170] (simple_planner) StdoutLine: {'line': b'-- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/lib/simple_planner/simple_planner_node\n'}
+[11.545248] (-) TimerEvent: {}
+[11.558891] (simple_planner) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/lib/simple_planner/simple_planner_node" to ""\n'}
+[11.560019] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/package_run_dependencies/simple_planner\n'}
+[11.560714] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/parent_prefix_path/simple_planner\n'}
+[11.561197] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/ament_prefix_path.sh\n'}
+[11.561560] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/ament_prefix_path.dsv\n'}
+[11.561912] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/path.sh\n'}
+[11.562471] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/environment/path.dsv\n'}
+[11.562868] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.bash\n'}
+[11.563137] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.sh\n'}
+[11.563395] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.zsh\n'}
+[11.563650] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/local_setup.dsv\n'}
+[11.563930] (simple_planner) StdoutLine: {'line': b'-- Installing: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/package.dsv\n'}
+[11.564187] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/ament_index/resource_index/packages/simple_planner\n'}
+[11.564429] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/cmake/simple_plannerConfig.cmake\n'}
+[11.564727] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/cmake/simple_plannerConfig-version.cmake\n'}
+[11.565005] (simple_planner) StdoutLine: {'line': b'-- Up-to-date: /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/install/simple_planner/share/simple_planner/package.xml\n'}
+[11.567569] (simple_planner) CommandEnded: {'returncode': 0}
+[11.616146] (simple_planner) JobEnded: {'identifier': 'simple_planner', 'rc': 0}
+[11.618330] (-) EventReactorShutdown: {}
