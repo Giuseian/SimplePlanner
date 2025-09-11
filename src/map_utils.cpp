@@ -1,3 +1,4 @@
+// Up to STEP 2 - kind of working 
 // #include "simple_planner/map_utils.hpp"
 
 // namespace simple_planner::map_utils
@@ -19,6 +20,8 @@
 
 
 
+
+// Integration of STEP 3
 #include "simple_planner/map_utils.hpp"
 #include "rclcpp/rclcpp.hpp"  // per timestamp
 

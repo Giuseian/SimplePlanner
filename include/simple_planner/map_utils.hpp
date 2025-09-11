@@ -1,3 +1,4 @@
+// Up to STEP 2 - kind of working
 // #ifndef SIMPLE_PLANNER_MAP_UTILS_HPP
 // #define SIMPLE_PLANNER_MAP_UTILS_HPP
 
@@ -24,7 +25,7 @@
 // #endif
 
 
-
+// Integration of STEP 3
 #ifndef SIMPLE_PLANNER_MAP_UTILS_HPP
 #define SIMPLE_PLANNER_MAP_UTILS_HPP
 

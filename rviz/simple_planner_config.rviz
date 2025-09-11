@@ -101,7 +101,7 @@ Visualization Manager:
       Enabled: true
     - Class: rviz_default_plugins/Path
       Name: Path
-      Topic: /simple_planner/path
+      Topic: /planned_path
       Color: 30; 144; 255
       Width: 0.05
       Enabled: true
