@@ -1,4 +1,3 @@
-// // Up to STEP 2 - kind of working
 // // #include "simple_planner/simple_planner.hpp"
 // // #include "simple_planner/map_utils.hpp"
 
@@ -47,10 +46,12 @@
 // // void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg)
 // // {
 // //   map_data_ = parseOccupancyGrid(*msg);
+// //   occupancy_grid_ = to2DGrid(map_data_, true);  // true = treat unknown as obstacle
 // //   map_received_ = true;
+// //   map_version_++;  // incrementa versione mappa
 
 // //   RCLCPP_INFO(this->get_logger(),
-// //               "Map received: %d x %d @ %.3f m resolution",
+// //               "Map received: %d x %d @ %.3f m resolution (2D grid built)",
 // //               map_data_.width, map_data_.height, map_data_.resolution);
 // // }
 
@@ -138,44 +139,122 @@
 // //       "Using manual start pose at (x=%.2f, y=%.2f)",
 // //       robot_pose_.pose.position.x,
 // //       robot_pose_.pose.position.y);
+// //   }
+// //   else
+// //   {
+// //     // Altrimenti: usa TF
+// //     try
+// //     {
+// //       auto transform = tf_buffer_->lookupTransform("map", "base_link", tf2::TimePointZero);
+
+// //       robot_pose_.header = transform.header;
+// //       robot_pose_.pose.position.x = transform.transform.translation.x;
+// //       robot_pose_.pose.position.y = transform.transform.translation.y;
+// //       robot_pose_.pose.position.z = transform.transform.translation.z;
+// //       robot_pose_.pose.orientation = transform.transform.rotation;
+
+// //       robot_pose_valid_ = true;
+
+// //       RCLCPP_INFO_THROTTLE(
+// //         this->get_logger(),
+// //         *this->get_clock(),
+// //         2000,
+// //         "TF robot pose: (x=%.2f, y=%.2f)",
+// //         robot_pose_.pose.position.x,
+// //         robot_pose_.pose.position.y);
+// //     }
+// //     catch (const tf2::TransformException & ex)
+// //     {
+// //       robot_pose_valid_ = false;
+// //       RCLCPP_WARN_THROTTLE(
+// //         this->get_logger(),
+// //         *this->get_clock(),
+// //         5000,
+// //         "Could not transform 'map' -> 'base_link': %s", ex.what());
+// //     }
+// //   }
+
+// //   // === Step 4: orchestrazione pianificazione ===
+// //   if (!map_received_ || !goal_received_ || !robot_pose_valid_) {
+// //     RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
+// //                          "Waiting for all data (map=%d goal=%d pose=%d)...",
+// //                          map_received_, goal_received_, robot_pose_valid_);
 // //     return;
 // //   }
 
-// //   // Altrimenti: usa TF
-// //   try
-// //   {
-// //     auto transform = tf_buffer_->lookupTransform("map", "base_link", tf2::TimePointZero);
+// //   // Conversione world -> grid
+// //   start_cell_ = worldToGrid(robot_pose_.pose.position.x,
+// //                             robot_pose_.pose.position.y,
+// //                             map_data_);
+// //   goal_cell_ = worldToGrid(goal_pose_.pose.position.x,
+// //                            goal_pose_.pose.position.y,
+// //                            map_data_);
 
-// //     robot_pose_.header = transform.header;
-// //     robot_pose_.pose.position.x = transform.transform.translation.x;
-// //     robot_pose_.pose.position.y = transform.transform.translation.y;
-// //     robot_pose_.pose.position.z = transform.transform.translation.z;
-// //     robot_pose_.pose.orientation = transform.transform.rotation;
+// //   // Change detection
+// //   bool map_changed   = (map_version_ != last_map_version_);
+// //   bool start_changed = (start_cell_ != last_start_cell_);
+// //   bool goal_changed  = (goal_cell_ != last_goal_cell_);
 
-// //     robot_pose_valid_ = true;
-
-// //     RCLCPP_INFO_THROTTLE(
-// //       this->get_logger(),
-// //       *this->get_clock(),
-// //       2000,
-// //       "TF robot pose: (x=%.2f, y=%.2f)",
-// //       robot_pose_.pose.position.x,
-// //       robot_pose_.pose.position.y);
+// //   if (!(map_changed || start_changed || goal_changed)) {
+// //     RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
+// //                          "No changes detected, skipping planning.");
+// //     return;
 // //   }
-// //   catch (const tf2::TransformException & ex)
-// //   {
-// //     robot_pose_valid_ = false;
-// //     RCLCPP_WARN_THROTTLE(
-// //       this->get_logger(),
-// //       *this->get_clock(),
-// //       5000,
-// //       "Could not transform 'map' -> 'base_link': %s", ex.what());
+
+// //   // Trigger planning
+// //   planOnce();
+
+// //   // Aggiorna riferimenti
+// //   last_map_version_ = map_version_;
+// //   last_start_cell_  = start_cell_;
+// //   last_goal_cell_   = goal_cell_;
+// // }
+
+// // // === Step 3.3: funzione per pubblicare un Path ===
+// // void SimplePlanner::publishPath(const std::vector<std::pair<int,int>>& path_cells)
+// // {
+// //   if (!map_received_) {
+// //     RCLCPP_WARN(this->get_logger(), "Cannot publish path: no map received yet.");
+// //     return;
 // //   }
+
+// //   nav_msgs::msg::Path path_msg;
+// //   path_msg.header.frame_id = "map";
+// //   path_msg.header.stamp = this->now();
+
+// //   for (const auto& cell : path_cells)
+// //   {
+// //     int row = cell.first;
+// //     int col = cell.second;
+
+// //     auto pose = gridToWorld(row, col, map_data_);
+// //     path_msg.poses.push_back(pose);
+// //   }
+
+// //   path_pub_->publish(path_msg);
+
+// //   RCLCPP_INFO(this->get_logger(), "Published path with %zu poses", path_msg.poses.size());
+// // }
+
+// // // === Step 4: funzione placeholder di planning ===
+// // void SimplePlanner::planOnce()
+// // {
+// //   RCLCPP_INFO(this->get_logger(),
+// //               "Planning triggered: start=(%d,%d), goal=(%d,%d)",
+// //               start_cell_.first, start_cell_.second,
+// //               goal_cell_.first, goal_cell_.second);
+
+// //   // Placeholder: per ora pubblica un path dummy tra start e goal
+// //   std::vector<std::pair<int,int>> dummy_path;
+// //   dummy_path.push_back(start_cell_);
+// //   dummy_path.push_back(goal_cell_);
+// //   publishPath(dummy_path);
 // // }
 
 
 
-// // INTEGRATION of STEP 3 
+
+// // Integration with additional checks 
 // #include "simple_planner/simple_planner.hpp"
 // #include "simple_planner/map_utils.hpp"
 
@@ -224,8 +303,24 @@
 // void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg)
 // {
 //   map_data_ = parseOccupancyGrid(*msg);
+
+//   // Controlli di validità mappa
+//   if (map_data_.width <= 0 || map_data_.height <= 0 || map_data_.resolution <= 0.0) {
+//     RCLCPP_ERROR(this->get_logger(), "Invalid map metadata (width/height/resolution). Ignoring map.");
+//     map_received_ = false;
+//     return;
+//   }
+
+//   if (map_data_.data.size() != static_cast<size_t>(map_data_.width * map_data_.height)) {
+//     RCLCPP_ERROR(this->get_logger(), "Map data size mismatch: expected %d, got %zu",
+//                  map_data_.width * map_data_.height, map_data_.data.size());
+//     map_received_ = false;
+//     return;
+//   }
+
 //   occupancy_grid_ = to2DGrid(map_data_, true);  // true = treat unknown as obstacle
 //   map_received_ = true;
+//   map_version_++;  // incrementa versione mappa
 
 //   RCLCPP_INFO(this->get_logger(),
 //               "Map received: %d x %d @ %.3f m resolution (2D grid built)",
@@ -316,39 +411,97 @@
 //       "Using manual start pose at (x=%.2f, y=%.2f)",
 //       robot_pose_.pose.position.x,
 //       robot_pose_.pose.position.y);
+//   }
+//   else
+//   {
+//     // Altrimenti: usa TF
+//     try
+//     {
+//       auto transform = tf_buffer_->lookupTransform("map", "base_link", tf2::TimePointZero);
+
+//       robot_pose_.header = transform.header;
+//       robot_pose_.pose.position.x = transform.transform.translation.x;
+//       robot_pose_.pose.position.y = transform.transform.translation.y;
+//       robot_pose_.pose.position.z = transform.transform.translation.z;
+//       robot_pose_.pose.orientation = transform.transform.rotation;
+
+//       robot_pose_valid_ = true;
+
+//       RCLCPP_INFO_THROTTLE(
+//         this->get_logger(),
+//         *this->get_clock(),
+//         2000,
+//         "TF robot pose: (x=%.2f, y=%.2f)",
+//         robot_pose_.pose.position.x,
+//         robot_pose_.pose.position.y);
+//     }
+//     catch (const tf2::TransformException & ex)
+//     {
+//       robot_pose_valid_ = false;
+//       RCLCPP_WARN_THROTTLE(
+//         this->get_logger(),
+//         *this->get_clock(),
+//         5000,
+//         "Could not transform 'map' -> 'base_link': %s", ex.what());
+//     }
+//   }
+
+//   // === Step 4: orchestrazione pianificazione ===
+//   if (!map_received_ || !goal_received_ || !robot_pose_valid_) {
+//     RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
+//                          "Waiting for all data (map=%d goal=%d pose=%d)...",
+//                          map_received_, goal_received_, robot_pose_valid_);
 //     return;
 //   }
 
-//   // Altrimenti: usa TF
-//   try
-//   {
-//     auto transform = tf_buffer_->lookupTransform("map", "base_link", tf2::TimePointZero);
+//   // Conversione world -> grid
+//   start_cell_ = worldToGrid(robot_pose_.pose.position.x,
+//                             robot_pose_.pose.position.y,
+//                             map_data_);
+//   goal_cell_ = worldToGrid(goal_pose_.pose.position.x,
+//                            goal_pose_.pose.position.y,
+//                            map_data_);
 
-//     robot_pose_.header = transform.header;
-//     robot_pose_.pose.position.x = transform.transform.translation.x;
-//     robot_pose_.pose.position.y = transform.transform.translation.y;
-//     robot_pose_.pose.position.z = transform.transform.translation.z;
-//     robot_pose_.pose.orientation = transform.transform.rotation;
-
-//     robot_pose_valid_ = true;
-
-//     RCLCPP_INFO_THROTTLE(
-//       this->get_logger(),
-//       *this->get_clock(),
-//       2000,
-//       "TF robot pose: (x=%.2f, y=%.2f)",
-//       robot_pose_.pose.position.x,
-//       robot_pose_.pose.position.y);
+//   // === Validazioni base (post-Step 4) ===
+//   if (!isInBounds(start_cell_) || !isInBounds(goal_cell_)) {
+//     RCLCPP_WARN(this->get_logger(),
+//                 "Start or goal out of map bounds. Skipping planning. start=(%d,%d) goal=(%d,%d)",
+//                 start_cell_.first, start_cell_.second,
+//                 goal_cell_.first, goal_cell_.second);
+//     return;
 //   }
-//   catch (const tf2::TransformException & ex)
-//   {
-//     robot_pose_valid_ = false;
-//     RCLCPP_WARN_THROTTLE(
-//       this->get_logger(),
-//       *this->get_clock(),
-//       5000,
-//       "Could not transform 'map' -> 'base_link': %s", ex.what());
+
+//   if (!isCellFree(start_cell_) || !isCellFree(goal_cell_)) {
+//     RCLCPP_WARN(this->get_logger(),
+//                 "Start or goal is in an occupied/unknown cell. Skipping planning.");
+//     return;
 //   }
+
+//   if (start_cell_ == goal_cell_) {
+//     RCLCPP_WARN(this->get_logger(),
+//                 "Start and goal are the same cell (%d,%d). Skipping planning.",
+//                 start_cell_.first, start_cell_.second);
+//     return;
+//   }
+
+//   // Change detection
+//   bool map_changed   = (map_version_ != last_map_version_);
+//   bool start_changed = (start_cell_ != last_start_cell_);
+//   bool goal_changed  = (goal_cell_ != last_goal_cell_);
+
+//   if (!(map_changed || start_changed || goal_changed)) {
+//     RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
+//                          "No changes detected, skipping planning.");
+//     return;
+//   }
+
+//   // Trigger planning
+//   planOnce();
+
+//   // Aggiorna riferimenti
+//   last_map_version_ = map_version_;
+//   last_start_cell_  = start_cell_;
+//   last_goal_cell_   = goal_cell_;
 // }
 
 // // === Step 3.3: funzione per pubblicare un Path ===
@@ -377,9 +530,47 @@
 //   RCLCPP_INFO(this->get_logger(), "Published path with %zu poses", path_msg.poses.size());
 // }
 
+// // === Step 4: funzione placeholder di planning ===
+// void SimplePlanner::planOnce()
+// {
+//   RCLCPP_INFO(this->get_logger(),
+//               "Planning triggered: start=(%d,%d), goal=(%d,%d)",
+//               start_cell_.first, start_cell_.second,
+//               goal_cell_.first, goal_cell_.second);
+
+//   // Placeholder: per ora pubblica un path dummy tra start e goal
+//   std::vector<std::pair<int,int>> dummy_path;
+//   dummy_path.push_back(start_cell_);
+//   dummy_path.push_back(goal_cell_);
+//   publishPath(dummy_path);
+// }
+
+// // === Helper per validazione celle ===
+// bool SimplePlanner::isInBounds(const std::pair<int,int>& cell) const
+// {
+//   return cell.first >= 0 && cell.first < map_data_.height &&
+//          cell.second >= 0 && cell.second < map_data_.width;
+// }
+
+// bool SimplePlanner::isCellFree(const std::pair<int,int>& cell) const
+// {
+//   int row = cell.first;
+//   int col = cell.second;
+//   int index = row * map_data_.width + col;
+
+//   if (index < 0 || index >= static_cast<int>(map_data_.data.size())) {
+//     return false;  // out of range = invalid
+//   }
+
+//   int8_t value = map_data_.data[index];
+//   return (value == 0);  // 0 = free, treat -1 and 100 as occupied
+// }
 
 
 
+
+
+// Integration with additional checks 
 #include "simple_planner/simple_planner.hpp"
 #include "simple_planner/map_utils.hpp"
 
@@ -428,6 +619,21 @@ SimplePlanner::SimplePlanner()
 void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg)
 {
   map_data_ = parseOccupancyGrid(*msg);
+
+  // Controlli di validità mappa
+  if (map_data_.width <= 0 || map_data_.height <= 0 || map_data_.resolution <= 0.0) {
+    RCLCPP_ERROR(this->get_logger(), "Invalid map metadata (width/height/resolution). Ignoring map.");
+    map_received_ = false;
+    return;
+  }
+
+  if (map_data_.data.size() != static_cast<size_t>(map_data_.width * map_data_.height)) {
+    RCLCPP_ERROR(this->get_logger(), "Map data size mismatch: expected %d, got %zu",
+                 map_data_.width * map_data_.height, map_data_.data.size());
+    map_received_ = false;
+    return;
+  }
+
   occupancy_grid_ = to2DGrid(map_data_, true);  // true = treat unknown as obstacle
   map_received_ = true;
   map_version_++;  // incrementa versione mappa
@@ -499,6 +705,7 @@ void SimplePlanner::initialPoseCallback(const geometry_msgs::msg::PoseWithCovari
   marker.lifetime = rclcpp::Duration(0, 0);  // permanente
   marker_pub_->publish(marker);
 }
+
 
 void SimplePlanner::timerCallback()
 {
@@ -572,6 +779,51 @@ void SimplePlanner::timerCallback()
                            goal_pose_.pose.position.y,
                            map_data_);
 
+  // === Debug: log valori grezzi della mappa ===
+  auto debugCell = [&](const std::pair<int,int>& cell, const std::string& label) {
+    int row = cell.first;
+    int col = cell.second;
+    int index = row * map_data_.width + col;
+
+    int8_t value = -99;
+    if (index >= 0 && index < static_cast<int>(map_data_.data.size())) {
+      value = map_data_.data[index];
+    }
+
+    RCLCPP_INFO(this->get_logger(),
+                "[DEBUG] %s cell=(%d,%d) index=%d value=%d",
+                label.c_str(), row, col, index, value);
+  };
+
+  debugCell(start_cell_, "START");
+  debugCell(goal_cell_, "GOAL");
+
+  // === Validazioni base (post-Step 4) ===
+  if (!isInBounds(start_cell_) || !isInBounds(goal_cell_)) {
+    RCLCPP_WARN(this->get_logger(),
+                "Start or goal out of map bounds. Skipping planning. start=(%d,%d) goal=(%d,%d)",
+                start_cell_.first, start_cell_.second,
+                goal_cell_.first, goal_cell_.second);
+    publishPath({});
+    return;
+  }
+
+  if (!isCellFree(start_cell_) || !isCellFree(goal_cell_)) {
+    RCLCPP_WARN(this->get_logger(),
+                "Start or goal is in an occupied/unknown cell. Skipping planning.");
+    publishPath({});
+    return;
+  }
+
+  // ⚠️ ADESSO QUI: check start==goal sempre valutato
+  if (start_cell_ == goal_cell_) {
+    RCLCPP_WARN(this->get_logger(),
+                "Start and goal are the same cell (%d,%d). Skipping planning.",
+                start_cell_.first, start_cell_.second);
+    publishPath({});
+    return;
+  }
+
   // Change detection
   bool map_changed   = (map_version_ != last_map_version_);
   bool start_changed = (start_cell_ != last_start_cell_);
@@ -591,6 +843,8 @@ void SimplePlanner::timerCallback()
   last_start_cell_  = start_cell_;
   last_goal_cell_   = goal_cell_;
 }
+
+
 
 // === Step 3.3: funzione per pubblicare un Path ===
 void SimplePlanner::publishPath(const std::vector<std::pair<int,int>>& path_cells)
@@ -632,3 +886,26 @@ void SimplePlanner::planOnce()
   dummy_path.push_back(goal_cell_);
   publishPath(dummy_path);
 }
+
+// === Helper per validazione celle ===
+bool SimplePlanner::isInBounds(const std::pair<int,int>& cell) const
+{
+  return cell.first >= 0 && cell.first < map_data_.height &&
+         cell.second >= 0 && cell.second < map_data_.width;
+}
+
+bool SimplePlanner::isCellFree(const std::pair<int,int>& cell) const
+{
+  int row = cell.first;
+  int col = cell.second;
+  int index = row * map_data_.width + col;
+
+  if (index < 0 || index >= static_cast<int>(map_data_.data.size())) {
+    return false;  // out of range = invalid
+  }
+
+  int8_t value = map_data_.data[index];
+  return (value == 0);  // 0 = free, treat -1 and 100 as occupied
+}
+
+
