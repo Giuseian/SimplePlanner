@@ -1,0 +1,18 @@
+simple_planner:
+  ros__parameters:
+    # --- Step 4 (già usato) ---
+    use_manual_start: true   # true se imposti lo start da RViz con /initialpose
+
+    # --- Step 5: Cost Function ---
+    # Scegli: "exponential" | "linear" | "inverse"
+    cost_function_type: "exponential"
+
+    # Parametri comuni/di supporto
+    inflation_radius: 0.5    # [m] raggio d'inflazione (exponential, linear)
+    alpha: 5.0               # [--] ripidità dell'esponenziale
+    W: 20.0                  # [--] scala del costo
+    epsilon: 0.1             # [m] evita 1/0 (solo 'inverse')
+    lethal_cost: 1000000000.0  # costo "infinito" per ostacoli/unknown
+
+    # (per Step 6 A*) - later 
+    lambda_for_astar: 2.0

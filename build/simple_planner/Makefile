@@ -210,6 +210,30 @@ simple_planner_node/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_planner_node.dir/build.make CMakeFiles/simple_planner_node.dir/build
 .PHONY : simple_planner_node/fast
 
+src/cost_utils.o: src/cost_utils.cpp.o
+.PHONY : src/cost_utils.o
+
+# target to build an object file
+src/cost_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_planner_node.dir/build.make CMakeFiles/simple_planner_node.dir/src/cost_utils.cpp.o
+.PHONY : src/cost_utils.cpp.o
+
+src/cost_utils.i: src/cost_utils.cpp.i
+.PHONY : src/cost_utils.i
+
+# target to preprocess a source file
+src/cost_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_planner_node.dir/build.make CMakeFiles/simple_planner_node.dir/src/cost_utils.cpp.i
+.PHONY : src/cost_utils.cpp.i
+
+src/cost_utils.s: src/cost_utils.cpp.s
+.PHONY : src/cost_utils.s
+
+# target to generate assembly for a file
+src/cost_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_planner_node.dir/build.make CMakeFiles/simple_planner_node.dir/src/cost_utils.cpp.s
+.PHONY : src/cost_utils.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -298,6 +322,9 @@ help:
 	@echo "... simple_planner_uninstall"
 	@echo "... uninstall"
 	@echo "... simple_planner_node"
+	@echo "... src/cost_utils.o"
+	@echo "... src/cost_utils.i"
+	@echo "... src/cost_utils.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
