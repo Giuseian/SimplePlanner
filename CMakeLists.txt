@@ -21,7 +21,8 @@ add_executable(simple_planner_node
   src/main.cpp
   src/simple_planner_node.cpp
   src/map_utils.cpp
-  src/cost_utils.cpp)
+  src/cost_utils.cpp
+  src/a_star.cpp)
 
 ament_target_dependencies(simple_planner_node
   rclcpp

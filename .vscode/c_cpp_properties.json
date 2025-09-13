@@ -13,7 +13,7 @@
             "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-x64",
             "compileCommands": [
-                "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/compile_commands.json"
+                "${workspaceFolder}/compile_commands.json"
             ]
         }
     ],

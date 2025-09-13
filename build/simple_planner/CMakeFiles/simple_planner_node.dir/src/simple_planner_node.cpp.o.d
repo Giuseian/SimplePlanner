@@ -793,5 +793,12 @@ CMakeFiles/simple_planner_node.dir/src/simple_planner_node.cpp.o: \
  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/mesh_file__traits.hpp \
  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/detail/marker__type_support.hpp \
  /opt/ros/jazzy/include/visualization_msgs/visualization_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/image.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__struct.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__builder.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__traits.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/image__type_support.hpp \
+ /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
  /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/include/simple_planner/map_utils.hpp \
- /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/include/simple_planner/cost_utils.hpp
+ /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/include/simple_planner/cost_utils.hpp \
+ /home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/include/simple_planner/a_star.hpp
