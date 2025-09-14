@@ -59,23 +59,29 @@ The distance map is transformed into a *costmap* by assigning traversal penaltie
 
 - **Exponential decay**  
 
-$c(i) =
+$$
+c(i) =
 \begin{cases}
 W \, e^{-\alpha \, d(i)}, & d(i) < R \\
 0, & d(i) \geq R
-\end{cases}$
+\end{cases}
+$$
 
 - **Linear decay**  
 
-$c(i) =
+$$
+c(i) =
 \begin{cases}
 W \left( 1 - \frac{d(i)}{R} \right), & d(i) < R \\
 0, & d(i) \geq R
-\end{cases}$
+\end{cases}
+$$
 
 - **Inverse**  
   
-$c(i) = \frac{W}{d(i) + \varepsilon}$
+$$
+c(i) = \frac{W}{d(i) + \varepsilon}
+$$
   
 
 where $R$ is the *inflation radius*, $\alpha$ a decay coefficient, $W$ a global weight, and $\varepsilon$ a small constant to avoid division by zero.  
