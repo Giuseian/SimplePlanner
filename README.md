@@ -47,7 +47,7 @@ Starting from occupied cells, a *distance map* is computed using a **multi-sourc
 For each free cell $i$, the algorithm assigns the Euclidean distance to the nearest obstacle:
 
 $$
-d(i) = \min_{j \in \mathcal{O}} \; \| p_i - p_j \|^2
+d(i) = \min_{j \in \mathcal{O}} \| p_i - p_j \|^2
 $$
 
 where $\mathcal{O}$ is the set of obstacle cells and $p_i$ is the metric position of cell $i$.  
@@ -62,7 +62,7 @@ The distance map is transformed into a *costmap* by assigning traversal penaltie
 $$
 c(i) =
 \begin{cases}
-W \, e^{-\alpha \, d(i)}, & d(i) < R \\
+W \, e^{-\alpha d(i)}, & d(i) < R \\
 0, & d(i) \geq R
 \end{cases}
 $$
