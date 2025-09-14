@@ -1,6 +1,6 @@
 # SimplePlanner
 <p align="left">
-  <strong>From grid to path: A* planning with clearance-based costs</strong>
+  <strong>A* planning with clearance-based costs</strong>
 </p>
 
 <p align="left">
