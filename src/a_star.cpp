@@ -9,12 +9,12 @@ namespace simple_planner {
 namespace a_star {
 
 struct Node {
-  int r, c;
+  int r, c;  // Indici cella 
   float g;   // Costo accumulato
-  float f;   // g + h
+  float f;   // g + h : costo stimato totale con h eurista 
 };
 
-// Comparatore per priority_queue (min-heap su f)
+// Comparatore per priority_queue (min-heap su f) - il nodo con f minore ha priorità più alta; in caso di pareggio si preferisce quello con g più piccolo
 struct NodeGreater {
   bool operator()(const Node& a, const Node& b) const {
     if (a.f == b.f) return a.g > b.g;  // Tie-break: preferisci g minore
@@ -28,7 +28,7 @@ static inline bool inBounds(int r, int c, const map_utils::MapData& map) {
 }
 
 // Euristica: distanza euclidea in metri
-static inline float heuristicEuclideanM(
+static inline float heuristicEuclideanM(   // Calcolo distanza euclidea in metri - Euristica h 
     int r1, int c1, int r2, int c2, float res_m)
 {
   const float dr = static_cast<float>(r2 - r1) * res_m;
@@ -59,6 +59,7 @@ static inline bool diagonalPassable(
   return true;
 }
 
+// Funzione principale di pianificazione A* - Implementazione di planPath
 std::vector<std::pair<int,int>> planPath(
   const std::pair<int,int>& start_cell,
   const std::pair<int,int>& goal_cell,
@@ -98,10 +99,10 @@ std::vector<std::pair<int,int>> planPath(
   const int neigh_count = use_diagonals ? 8 : 4;
 
   // Inizializzazione strutture
-  std::vector<std::vector<float>> g_cost(H, std::vector<float>(W, std::numeric_limits<float>::infinity()));
-  std::vector<std::vector<std::pair<int,int>>> parent(H, std::vector<std::pair<int,int>>(W, {-1,-1}));
-  std::vector<std::vector<bool>> closed(H, std::vector<bool>(W, false));
-  std::priority_queue<Node, std::vector<Node>, NodeGreater> open;
+  std::vector<std::vector<float>> g_cost(H, std::vector<float>(W, std::numeric_limits<float>::infinity()));  // g_cost : costo migliore trovato per ogni cella 
+  std::vector<std::vector<std::pair<int,int>>> parent(H, std::vector<std::pair<int,int>>(W, {-1,-1}));   // parent : per ricostruire il path 
+  std::vector<std::vector<bool>> closed(H, std::vector<bool>(W, false));   // closed : nodi già visitati 
+  std::priority_queue<Node, std::vector<Node>, NodeGreater> open;   // lista aperta (min-heap su f)
 
   // Nodo iniziale
   g_cost[start_cell.first][start_cell.second] = 0.0f;
@@ -110,14 +111,15 @@ std::vector<std::pair<int,int>> planPath(
   open.push(Node{ start_cell.first, start_cell.second, 0.0f, h0 });
 
   // Ciclo principale A*
-  while (!open.empty()) {
+  while (!open.empty()) {  // finché ci sono nodi da esplorare
+    // Estrai nodo con f minore
     Node cur = open.top(); 
     open.pop();
 
-    if (closed[cur.r][cur.c]) continue;
-    closed[cur.r][cur.c] = true;
+    if (closed[cur.r][cur.c]) continue;  // se già chiuso -> salta 
+    closed[cur.r][cur.c] = true;  // altrimenti marca come chiuso 
 
-    // Goal raggiunto
+    // Goal raggiunto : ricostruire il path, invertire l'ordine e restituire il percorso 
     if (cur.r == goal_cell.first && cur.c == goal_cell.second) {
       std::vector<std::pair<int,int>> path;
       int r = cur.r, c = cur.c;

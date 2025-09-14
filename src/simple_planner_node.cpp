@@ -68,6 +68,7 @@ simple_planner::SimplePlanner::SimplePlanner(const rclcpp::NodeOptions & options
     std::bind(&SimplePlanner::timerCallback, this));
 }
 
+// Riceve la mappa (OccupancyGrid) e la converte in MapData e griglia 2D + calcola distance e cost map + pubblica debug cost map 
 void simple_planner::SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg)
 {
   map_data_ = parseOccupancyGrid(*msg);
@@ -242,7 +243,7 @@ void simple_planner::SimplePlanner::initialPoseCallback(const geometry_msgs::msg
 
 void simple_planner::SimplePlanner::timerCallback()
 {
-  if (use_manual_start_)
+  if (use_manual_start_)  // usa la posa manuale se abilitata
   {
     if (!manual_start_received_) {
       if (last_plan_status_ != PlanStatus::WAITING) {
@@ -256,7 +257,7 @@ void simple_planner::SimplePlanner::timerCallback()
     robot_pose_ = manual_start_pose_;
     robot_pose_valid_ = true;
   }
-  else
+  else  // altrimenti tenta di ricavare la posa del robot da TF (map -> base_link)
   {
     try {
       auto transform = tf_buffer_->lookupTransform("map", "base_link", tf2::TimePointZero);
@@ -278,6 +279,7 @@ void simple_planner::SimplePlanner::timerCallback()
     }
   }
 
+  // === Controllo disponibilità dati minimi (mappa, goal, posa robot)===
   if (!map_received_ || !goal_received_ || !robot_pose_valid_) {
     if (last_plan_status_ != PlanStatus::WAITING) {
       RCLCPP_WARN(this->get_logger(),
@@ -288,15 +290,18 @@ void simple_planner::SimplePlanner::timerCallback()
     return;
   }
 
+  // Conversione con worldToGrid
   start_cell_ = worldToGrid(robot_pose_.pose.position.x,
                             robot_pose_.pose.position.y, map_data_);
   goal_cell_ = worldToGrid(goal_pose_.pose.position.x,
                            goal_pose_.pose.position.y, map_data_);
 
+  // === Controllo cambiamenti rispetto all'ultima pianificazione ===
   bool map_changed   = (map_version_ != last_map_version_);
   bool start_changed = (start_cell_ != last_start_cell_);
   bool goal_changed  = (goal_cell_ != last_goal_cell_);
 
+  // Se non è cambiato nulla, non pianifica di nuovo e attende nuovi dati
   if (!(map_changed || start_changed || goal_changed)) {
     if (last_plan_status_ == PlanStatus::VALID) {
       RCLCPP_WARN(this->get_logger(), "Waiting for new data...");
@@ -397,7 +402,7 @@ void simple_planner::SimplePlanner::planOnce()
   bool use_diagonals = true;
   float lambda_weight = 2.0f;
 
-  auto path_cells = simple_planner::a_star::planPath(
+  auto path_cells = simple_planner::a_star::planPath(   // lancia A* 
       start_cell_, goal_cell_,
       occupancy_grid_,
       cost_map_,
@@ -414,19 +419,23 @@ void simple_planner::SimplePlanner::planOnce()
   }
 
   // Calcolo costo totale e medio
-  double total_cost = 0.0;
-  for (const auto& cell : path_cells) {
-    int r = cell.first;
-    int c = cell.second;
-    if (isInBounds(cell)) {
-      total_cost += cost_map_[r][c];
-    }
-  }
-  double mean_cost = total_cost / path_cells.size();
+  // double total_cost = 0.0;
+  // for (const auto& cell : path_cells) {
+  //   int r = cell.first;
+  //   int c = cell.second;
+  //   if (isInBounds(cell)) {
+  //     total_cost += cost_map_[r][c];
+  //   }
+  // }
+  // double mean_cost = total_cost / path_cells.size();
+
+  // RCLCPP_INFO(this->get_logger(),
+  //             "A* found path with %zu cells, total cost=%.2f, mean cost=%.2f",
+  //             path_cells.size(), total_cost, mean_cost);
 
   RCLCPP_INFO(this->get_logger(),
-              "A* found path with %zu cells, total cost=%.2f, mean cost=%.2f",
-              path_cells.size(), total_cost, mean_cost);
+            "A* found path with %zu cells",
+            path_cells.size());
 
   publishPath(path_cells);
   last_plan_status_ = PlanStatus::VALID;

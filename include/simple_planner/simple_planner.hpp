@@ -35,29 +35,29 @@ public:
 
 private:
   // === Callbacks ROS ===
-  void mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg);
-  void goalCallback(const geometry_msgs::msg::PoseStamped::SharedPtr msg);
-  void initialPoseCallback(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg);
-  void timerCallback();
+  void mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg);   // riceve mappa 
+  void goalCallback(const geometry_msgs::msg::PoseStamped::SharedPtr msg);   // riceve goal 
+  void initialPoseCallback(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg);   // riceve posa iniziale del robot 
+  void timerCallback();   // esegue periodicamente la pianificazione
 
   // === Helpers ===
-  void publishPath(const std::vector<std::pair<int,int>>& path_cells);
-  void planOnce();  
-  void publishCostmapDebug();
+  void publishPath(const std::vector<std::pair<int,int>>& path_cells);   // pubblica il percorso 
+  void planOnce();   // funzione centrale di pianificazione 
+  void publishCostmapDebug();   // pubblica immagine di debug della costmap
 
   // Validazione celle
   bool isInBounds(const std::pair<int,int>& cell) const;
   bool isCellFree(const std::pair<int,int>& cell) const;
 
   // === Subscribers ===
-  rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr map_sub_;
-  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr goal_sub_;
-  rclcpp::Subscription<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr initial_pose_sub_;
+  rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr map_sub_;   // riceve OccupancyGrid 
+  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr goal_sub_;   // riceve goal
+  rclcpp::Subscription<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr initial_pose_sub_;  // riceve posa iniziale stimata del robot
 
   // === Publishers ===
-  rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub_;
-  rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr marker_pub_;
-  rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr costmap_debug_pub_;
+  rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub_;  // pubblica percorso 
+  rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr marker_pub_;   // per visualizzare marker start/goal
+  rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr costmap_debug_pub_;  // pubblica immagine debug costmap
 
   // === Timer ===
   rclcpp::TimerBase::SharedPtr timer_;

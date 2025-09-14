@@ -29,7 +29,8 @@ Grid2DFloat computeDistanceMap(
     }
   }
 
-  // BFS multi-source (8 vicini)
+  // BFS multi-source (8 vicini)  
+  // Parte da celle ostacolo contemporaneamente, propaga iterativamente la distanza verso le celle libere (usa 8 direzioni)
   std::vector<std::pair<int,int>> dirs = {
     {1,0},{-1,0},{0,1},{0,-1},
     {1,1},{1,-1},{-1,1},{-1,-1}
@@ -41,9 +42,9 @@ Grid2DFloat computeDistanceMap(
       int nr = r+dr, nc = c+dc;
       if (nr < 0 || nr >= H || nc < 0 || nc >= Wd) continue;
 
-      float step = (dr==0 || dc==0) ? res : res * std::sqrt(2.0);
+      float step = (dr==0 || dc==0) ? res : res * std::sqrt(2.0);  // res : costi ortogonali, res*sqrt(2) diagonali
       float ndist = dist[r][c] + step;
-      if (ndist < dist[nr][nc]) {
+      if (ndist < dist[nr][nc]) {  // se la nuova distanza è minore della precedente, aggiorna e aggiunge la cella in coda 
         dist[nr][nc] = ndist;
         q.push({nr,nc});
       }
