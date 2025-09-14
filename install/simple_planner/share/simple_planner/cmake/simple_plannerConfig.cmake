@@ -1,1 +1,0 @@
-/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner/ament_cmake_core/simple_plannerConfig.cmake
