@@ -62,7 +62,7 @@ The distance map is transformed into a *costmap* by assigning traversal penaltie
 $$
 c(i) =
 \begin{cases}
-W \, e^{-\alpha d(i)}, & d(i) < R \\
+W e^{-\alpha d(i)}, & d(i) < R \\
 0, & d(i) \geq R
 \end{cases}
 $$
