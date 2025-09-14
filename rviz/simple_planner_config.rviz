@@ -1,118 +1,65 @@
-# Panels:
-#   - Class: rviz_common/Displays
-#     Name: Displays
-#     Property Tree Widget:
-#       Expanded: true
-#       Splitter Ratio: 0.5
-#   - Class: rviz_common/Selection
-#   - Class: rviz_common/Tool Properties
-#     Expanded: false
-#   - Class: rviz_common/Views
-#     Expanded: true
-#     Splitter Ratio: 0.5
-
-# Visualization Manager:
-#   Class: ""
-#   Displays:
-#     - Class: rviz_default_plugins/Map
-#       Name: Map
-#       Topic: /map
-#       Alpha: 1.0
-#       Color Scheme: map
-#       Draw Behind: false
-#       Enabled: true
-#     - Class: rviz_default_plugins/Path
-#       Name: Path
-#       Topic: /planned_path
-#       Color: 30; 144; 255
-#       Width: 0.05
-#       Enabled: true
-#     - Class: rviz_default_plugins/Marker
-#       Enabled: true
-#       Name: Start/Goal Markers
-#       Namespaces:
-#         goal: true
-#         start: true
-#       Topic:
-#         Depth: 5
-#         Durability Policy: Volatile
-#         Filter size: 10
-#         History Policy: Keep Last
-#         Reliability Policy: Reliable
-#         Value: /visualization_marker
-#     - Class: rviz_default_plugins/Marker
-#       Name: Visited Cells
-#       Marker Topic: /simple_planner/visited
-#       Enabled: true
-#     - Class: rviz_default_plugins/Marker
-#       Name: Frontier Cells
-#       Marker Topic: /simple_planner/frontier
-#       Enabled: true
-#     - Class: rviz_default_plugins/Grid
-#       Name: Grid
-#       Cell Size: 1
-#       Color: 160; 160; 160
-#       Enabled: false
-
-#   Enabled: true
-
-#   Global Options:
-#     Background Color: 0; 0; 0
-#     Fixed Frame: map
-
-#   Tools:
-#     - Class: rviz_default_plugins/Interact
-#     - Class: rviz_default_plugins/MoveCamera
-#     - Class: rviz_default_plugins/Select
-#     - Class: rviz_default_plugins/Measure
-#     - Class: rviz_default_plugins/SetInitialPose
-#       Topic: /initialpose
-#       Frame: map
-#     - Class: rviz_default_plugins/SetGoal
-#       Topic: /goal_pose
-#       Frame: map
-
-#   Views:
-#     Current:
-#       Class: rviz_default_plugins/TopDownOrtho
-#       Name: Top Down
-#       Angle: 0
-#       Scale: 
-#       Target Frame: map
-#       X: 0
-#       Y: 0
-
-
-
 Panels:
   - Class: rviz_common/Displays
+    Help Height: 70
     Name: Displays
     Property Tree Widget:
-      Expanded: true
+      Expanded: ~
       Splitter Ratio: 0.5
-  - Class: rviz_common/Selection
-  - Class: rviz_common/Tool Properties
-    Expanded: false
-  - Class: rviz_common/Views
-    Expanded: true
-    Splitter Ratio: 0.5
-
+    Tree Height: 256
 Visualization Manager:
   Class: ""
   Displays:
-    - Class: rviz_default_plugins/Map
-      Name: Map
-      Topic: /map
-      Alpha: 1.0
+    - Alpha: 1
+      Binary representation: false
+      Binary threshold: 100
+      Class: rviz_default_plugins/Map
       Color Scheme: map
       Draw Behind: false
       Enabled: true
-    - Class: rviz_default_plugins/Path
-      Name: Path
-      Topic: /planned_path
+      Name: Map
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map_updates
+      Use Timestamp: false
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
       Color: 30; 144; 255
-      Width: 0.05
       Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /planned_path
+      Value: true
     - Class: rviz_default_plugins/Marker
       Enabled: true
       Name: Start/Goal Markers
@@ -126,20 +73,51 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /visualization_marker
+      Value: true
     - Class: rviz_default_plugins/Marker
+      Enabled: true
       Name: Visited Cells
-      Marker Topic: /simple_planner/visited
-      Enabled: true
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: ""
+      Value: true
     - Class: rviz_default_plugins/Marker
-      Name: Frontier Cells
-      Marker Topic: /simple_planner/frontier
       Enabled: true
-    - Class: rviz_default_plugins/Grid
-      Name: Grid
+      Name: Frontier Cells
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: ""
+      Value: true
+    - Alpha: 0.5
       Cell Size: 1
+      Class: rviz_default_plugins/Grid
       Color: 160; 160; 160
       Enabled: false
-    #  Aggiunto per la costmap
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: false
     - Class: rviz_default_plugins/Image
       Enabled: true
       Max Value: 1
@@ -154,31 +132,67 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /simple_planner/costmap_debug
       Value: true
-
   Enabled: true
-
   Global Options:
     Background Color: 0; 0; 0
     Fixed Frame: map
-
+    Frame Rate: 30
+  Name: root
   Tools:
     - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
     - Class: rviz_default_plugins/MoveCamera
     - Class: rviz_default_plugins/Select
     - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
     - Class: rviz_default_plugins/SetInitialPose
-      Topic: /initialpose
-      Frame: map
+      Covariance x: 0.25
+      Covariance y: 0.25
+      Covariance yaw: 0.06853891909122467
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /initialpose
     - Class: rviz_default_plugins/SetGoal
-      Topic: /goal_pose
-      Frame: map
-
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /goal_pose
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
   Views:
     Current:
-      Class: rviz_default_plugins/TopDownOrtho
-      Name: Top Down
       Angle: 0
-      Scale: 
+      Class: rviz_default_plugins/TopDownOrtho
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Scale: 624.005615234375
       Target Frame: map
-      X: 0
-      Y: 0
+      Value: TopDownOrtho (rviz_default_plugins)
+      X: 82.3795394897461
+      Y: 17.27051544189453
+    Saved: ~
+Window Geometry:
+  Costmap Debug:
+    collapsed: false
+  Displays:
+    collapsed: false
+  Height: 720
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd00000001000000000000015600000272fc0200000002fb0000001a0043006f00730074006d00610070002000440065006200750067010000003f000000e60000001700fffffffb000000100044006900730070006c006100790073010000012b00000186000000cc00ffffff0000016c0000027200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 712
+  X: 2020
+  Y: 100

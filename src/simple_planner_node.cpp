@@ -1,4 +1,7 @@
 #include "simple_planner/simple_planner.hpp"
+#include "simple_planner/map_utils.hpp"
+#include "simple_planner/cost_utils.hpp"
+
 #include <algorithm>
 #include <limits>
 #include <array>
@@ -7,10 +10,14 @@ using std::placeholders::_1;
 using namespace simple_planner::map_utils;
 using namespace simple_planner::cost_utils;
 
-SimplePlanner::SimplePlanner()
+
+simple_planner::SimplePlanner::SimplePlanner(const rclcpp::NodeOptions & options)
 : rclcpp::Node("simple_planner")
 {
   RCLCPP_INFO(this->get_logger(), "Simple Planner Node initialized!");
+
+  // Stato iniziale
+  last_plan_status_ = PlanStatus::WAITING;
 
   // === Parametri ===
   this->declare_parameter("use_manual_start", false);
@@ -61,7 +68,7 @@ SimplePlanner::SimplePlanner()
     std::bind(&SimplePlanner::timerCallback, this));
 }
 
-void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg)
+void simple_planner::SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg)
 {
   map_data_ = parseOccupancyGrid(*msg);
 
@@ -85,7 +92,6 @@ void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr ms
               "Map received: %d x %d @ %.3f m resolution",
               map_data_.width, map_data_.height, map_data_.resolution);
 
-  // === Step 5: genera distance_map e cost_map ===
   distance_map_ = computeDistanceMap(occupancy_grid_, map_data_);
   cost_map_ = computeCostMap(distance_map_, occupancy_grid_, map_data_,
                              cost_function_type_, inflation_radius_, alpha_,
@@ -94,7 +100,6 @@ void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr ms
   RCLCPP_INFO(this->get_logger(), "Cost map generated with type=%s",
               cost_function_type_.c_str());
 
-  // === Debug: statistiche cost_map ===
   float min_cost = std::numeric_limits<float>::infinity();
   float max_cost = -std::numeric_limits<float>::infinity();
   double sum_cost = 0.0;
@@ -103,7 +108,7 @@ void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr ms
   for (int r = 0; r < map_data_.height; r++) {
     for (int c = 0; c < map_data_.width; c++) {
       float v = cost_map_[r][c];
-      if (v >= lethal_cost_) continue;  // salta celle "lethal"
+      if (v >= lethal_cost_) continue;
       min_cost = std::min(min_cost, v);
       max_cost = std::max(max_cost, v);
       sum_cost += v;
@@ -123,7 +128,7 @@ void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr ms
   publishCostmapDebug();
 }
 
-void SimplePlanner::publishCostmapDebug()
+void simple_planner::SimplePlanner::publishCostmapDebug()
 {
   if (!map_received_ || cost_map_.empty()) return;
 
@@ -132,7 +137,7 @@ void SimplePlanner::publishCostmapDebug()
   img.header.stamp = this->now();
   img.height = map_data_.height;
   img.width = map_data_.width;
-  img.encoding = "rgb8";   // immagine a colori
+  img.encoding = "rgb8";
   img.step = img.width * 3;
   img.data.resize(img.height * img.step);
 
@@ -146,15 +151,10 @@ void SimplePlanner::publishCostmapDebug()
 
   auto costToColor = [](float norm) -> std::array<uint8_t,3> {
     float r=0, g=0, b=0;
-    if (norm < 0.25f) {
-      r = 0; g = 4*norm; b = 1;
-    } else if (norm < 0.5f) {
-      r = 0; g = 1; b = 1 - 4*(norm-0.25f);
-    } else if (norm < 0.75f) {
-      r = 4*(norm-0.5f); g = 1; b = 0;
-    } else {
-      r = 1; g = 1 - 4*(norm-0.75f); b = 0;
-    }
+    if (norm < 0.25f) { r = 0; g = 4*norm; b = 1; }
+    else if (norm < 0.5f) { r = 0; g = 1; b = 1 - 4*(norm-0.25f); }
+    else if (norm < 0.75f) { r = 4*(norm-0.5f); g = 1; b = 0; }
+    else { r = 1; g = 1 - 4*(norm-0.75f); b = 0; }
     return {static_cast<uint8_t>(r*255),
             static_cast<uint8_t>(g*255),
             static_cast<uint8_t>(b*255)};
@@ -164,9 +164,8 @@ void SimplePlanner::publishCostmapDebug()
     for (int c = 0; c < map_data_.width; c++) {
       float v = cost_map_[r][c];
       uint8_t R=0,G=0,B=0;
-      if (v >= lethal_cost_) {
-        R=0; G=0; B=0;
-      } else {
+      if (v >= lethal_cost_) { R=0; G=0; B=0; }
+      else {
         float norm = v / max_cost;
         auto color = costToColor(norm);
         R = color[0]; G = color[1]; B = color[2];
@@ -181,7 +180,7 @@ void SimplePlanner::publishCostmapDebug()
   costmap_debug_pub_->publish(img);
 }
 
-void SimplePlanner::goalCallback(const geometry_msgs::msg::PoseStamped::SharedPtr msg)
+void simple_planner::SimplePlanner::goalCallback(const geometry_msgs::msg::PoseStamped::SharedPtr msg)
 {
   goal_pose_ = *msg;
   goal_received_ = true;
@@ -210,7 +209,7 @@ void SimplePlanner::goalCallback(const geometry_msgs::msg::PoseStamped::SharedPt
   marker_pub_->publish(marker);
 }
 
-void SimplePlanner::initialPoseCallback(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg)
+void simple_planner::SimplePlanner::initialPoseCallback(const geometry_msgs::msg::PoseWithCovarianceStamped::SharedPtr msg)
 {
   manual_start_pose_.header = msg->header;
   manual_start_pose_.pose = msg->pose.pose;
@@ -240,23 +239,22 @@ void SimplePlanner::initialPoseCallback(const geometry_msgs::msg::PoseWithCovari
   marker_pub_->publish(marker);
 }
 
-void SimplePlanner::timerCallback()
+
+void simple_planner::SimplePlanner::timerCallback()
 {
   if (use_manual_start_)
   {
     if (!manual_start_received_) {
-      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
-                           "Manual start enabled but not yet received.");
+      if (last_plan_status_ != PlanStatus::WAITING) {
+        RCLCPP_WARN(this->get_logger(),
+                    "Waiting for new data (manual start not received).");
+        last_plan_status_ = PlanStatus::WAITING;
+      }
       robot_pose_valid_ = false;
       return;
     }
-
     robot_pose_ = manual_start_pose_;
     robot_pose_valid_ = true;
-
-    RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
-                         "Using manual start pose at (x=%.2f, y=%.2f)",
-                         robot_pose_.pose.position.x, robot_pose_.pose.position.y);
   }
   else
   {
@@ -268,22 +266,25 @@ void SimplePlanner::timerCallback()
       robot_pose_.pose.position.z = transform.transform.translation.z;
       robot_pose_.pose.orientation = transform.transform.rotation;
       robot_pose_valid_ = true;
-
-      RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
-                           "TF robot pose: (x=%.2f, y=%.2f)",
-                           robot_pose_.pose.position.x, robot_pose_.pose.position.y);
     }
     catch (const tf2::TransformException & ex) {
+      if (last_plan_status_ != PlanStatus::WAITING) {
+        RCLCPP_WARN(this->get_logger(),
+                    "Waiting for new data (TF unavailable): %s", ex.what());
+        last_plan_status_ = PlanStatus::WAITING;
+      }
       robot_pose_valid_ = false;
-      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
-                           "Could not transform 'map' -> 'base_link': %s", ex.what());
+      return;
     }
   }
 
   if (!map_received_ || !goal_received_ || !robot_pose_valid_) {
-    RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
-                         "Waiting for all data (map=%d goal=%d pose=%d)...",
-                         map_received_, goal_received_, robot_pose_valid_);
+    if (last_plan_status_ != PlanStatus::WAITING) {
+      RCLCPP_WARN(this->get_logger(),
+                  "Waiting for new data (map=%d goal=%d pose=%d)...",
+                  map_received_, goal_received_, robot_pose_valid_);
+      last_plan_status_ = PlanStatus::WAITING;
+    }
     return;
   }
 
@@ -292,44 +293,76 @@ void SimplePlanner::timerCallback()
   goal_cell_ = worldToGrid(goal_pose_.pose.position.x,
                            goal_pose_.pose.position.y, map_data_);
 
-  if (!isInBounds(start_cell_) || !isInBounds(goal_cell_)) {
-    RCLCPP_WARN(this->get_logger(), "Start or goal out of map bounds.");
-    publishPath({});
-    return;
-  }
-
-  if (!isCellFree(start_cell_) || !isCellFree(goal_cell_)) {
-    RCLCPP_WARN(this->get_logger(), "Start or goal is in an occupied cell.");
-    publishPath({});
-    return;
-  }
-
-  if (start_cell_ == goal_cell_) {
-    RCLCPP_WARN(this->get_logger(),
-                "Start and goal are the same cell (%d,%d). Skipping planning.",
-                start_cell_.first, start_cell_.second);
-    publishPath({});
-    return;
-  }
-
   bool map_changed   = (map_version_ != last_map_version_);
   bool start_changed = (start_cell_ != last_start_cell_);
   bool goal_changed  = (goal_cell_ != last_goal_cell_);
 
   if (!(map_changed || start_changed || goal_changed)) {
-    RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
-                         "No changes detected, skipping planning.");
+    if (last_plan_status_ == PlanStatus::VALID) {
+      RCLCPP_WARN(this->get_logger(), "Waiting for new data...");
+      last_plan_status_ = PlanStatus::WAITING;
+    }
     return;
   }
 
-  planOnce();
+  // === Controllo validità con messaggi specifici ===
+  bool start_valid = isInBounds(start_cell_) && isCellFree(start_cell_);
+  bool goal_valid  = isInBounds(goal_cell_)  && isCellFree(goal_cell_);
 
+  if (!isInBounds(start_cell_) && last_start_valid_) {
+    RCLCPP_WARN(this->get_logger(),
+                "No valid path: START out of map bounds (%d,%d).",
+                start_cell_.first, start_cell_.second);
+    RCLCPP_INFO(this->get_logger(), "Please enter valid data.");
+  }
+  if (!isInBounds(goal_cell_) && last_goal_valid_) {
+    RCLCPP_WARN(this->get_logger(),
+                "No valid path: GOAL out of map bounds (%d,%d).",
+                goal_cell_.first, goal_cell_.second);
+    RCLCPP_INFO(this->get_logger(), "Please enter valid data.");
+  }
+  if (isInBounds(start_cell_) && !isCellFree(start_cell_) && last_start_valid_) {
+    RCLCPP_WARN(this->get_logger(),
+                "No valid path: START is in an occupied cell (%d,%d).",
+                start_cell_.first, start_cell_.second);
+    RCLCPP_INFO(this->get_logger(), "Please enter valid data.");
+  }
+  if (isInBounds(goal_cell_) && !isCellFree(goal_cell_) && last_goal_valid_) {
+    RCLCPP_WARN(this->get_logger(),
+                "No valid path: GOAL is in an occupied cell (%d,%d).",
+                goal_cell_.first, goal_cell_.second);
+    RCLCPP_INFO(this->get_logger(), "Please enter valid data.");
+  }
+
+  // Aggiorno flag validità
+  last_start_valid_ = start_valid;
+  last_goal_valid_  = goal_valid;
+
+  if (start_valid && goal_valid && start_cell_ == goal_cell_) {
+    RCLCPP_WARN(this->get_logger(),
+                "No valid path: START and GOAL are the same cell (%d,%d).",
+                start_cell_.first, start_cell_.second);
+    RCLCPP_INFO(this->get_logger(), "Please enter valid data.");
+    publishPath({});
+    last_plan_status_ = PlanStatus::INVALID;
+    return;
+  }
+
+  if (!start_valid || !goal_valid) {
+    publishPath({});
+    last_plan_status_ = PlanStatus::INVALID;
+    return;
+  }
+
+  // === Se valido → pianifico ===
+  planOnce();
   last_map_version_ = map_version_;
   last_start_cell_  = start_cell_;
   last_goal_cell_   = goal_cell_;
 }
 
-void SimplePlanner::publishPath(const std::vector<std::pair<int,int>>& path_cells)
+
+void simple_planner::SimplePlanner::publishPath(const std::vector<std::pair<int,int>>& path_cells)
 {
   if (!map_received_) {
     RCLCPP_WARN(this->get_logger(), "Cannot publish path: no map received yet.");
@@ -348,10 +381,13 @@ void SimplePlanner::publishPath(const std::vector<std::pair<int,int>>& path_cell
   }
 
   path_pub_->publish(path_msg);
-  RCLCPP_INFO(this->get_logger(), "Published path with %zu poses", path_msg.poses.size());
+
+  if (!path_cells.empty()) {
+    RCLCPP_INFO(this->get_logger(), "Published path with %zu poses", path_msg.poses.size());
+  }
 }
 
-void SimplePlanner::planOnce()
+void simple_planner::SimplePlanner::planOnce()
 {
   RCLCPP_INFO(this->get_logger(),
               "Planning triggered: start=(%d,%d), goal=(%d,%d)",
@@ -370,22 +406,39 @@ void SimplePlanner::planOnce()
       lambda_weight);
 
   if (path_cells.empty()) {
-    RCLCPP_WARN(this->get_logger(), "A* failed to find a path.");
+    RCLCPP_WARN(this->get_logger(), "No valid path found: A* failed.");
+    RCLCPP_INFO(this->get_logger(), "Please enter valid data.");
     publishPath({});
+    last_plan_status_ = PlanStatus::INVALID;
     return;
   }
 
-  RCLCPP_INFO(this->get_logger(), "A* found path with %zu cells", path_cells.size());
+  // Calcolo costo totale e medio
+  double total_cost = 0.0;
+  for (const auto& cell : path_cells) {
+    int r = cell.first;
+    int c = cell.second;
+    if (isInBounds(cell)) {
+      total_cost += cost_map_[r][c];
+    }
+  }
+  double mean_cost = total_cost / path_cells.size();
+
+  RCLCPP_INFO(this->get_logger(),
+              "A* found path with %zu cells, total cost=%.2f, mean cost=%.2f",
+              path_cells.size(), total_cost, mean_cost);
+
   publishPath(path_cells);
+  last_plan_status_ = PlanStatus::VALID;
 }
 
-bool SimplePlanner::isInBounds(const std::pair<int,int>& cell) const
+bool simple_planner::SimplePlanner::isInBounds(const std::pair<int,int>& cell) const
 {
   return cell.first >= 0 && cell.first < map_data_.height &&
          cell.second >= 0 && cell.second < map_data_.width;
 }
 
-bool SimplePlanner::isCellFree(const std::pair<int,int>& cell) const
+bool simple_planner::SimplePlanner::isCellFree(const std::pair<int,int>& cell) const
 {
   int r = cell.first;
   int c = cell.second;
@@ -394,5 +447,6 @@ bool SimplePlanner::isCellFree(const std::pair<int,int>& cell) const
   if (c < 0 || c >= static_cast<int>(occupancy_grid_[0].size())) return false;
 
   int8_t v = occupancy_grid_[r][c];
-  return (v == 0); // 0=free, 100/-1=blocked
+  return (v == 0);
 }
+

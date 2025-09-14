@@ -4,6 +4,7 @@ install/
 log/
 
 # IDE/editor files
+compile_commands.json
 .vscode/
 .idea/
 
@@ -13,7 +14,7 @@ __pycache__/
 
 # CMake cache
 CMakeCache.txt
-CMakeFiles/okok
+CMakeFiles/
 
 # Misc
 *.swp

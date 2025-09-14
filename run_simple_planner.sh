@@ -17,7 +17,7 @@ gnome-terminal -- bash -c "
 "
 
 # Dai tempo a RViz ad avviarsi
-sleep 2
+sleep 4
 
 # === Second terminal: map_server ===
 gnome-terminal -- bash -c "
