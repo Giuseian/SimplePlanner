@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-6ec2cbc7bcc0b9186061.json",
+					"jsonFile" : "directory-.-Debug-8384980fe55cf733a87a.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.15"
@@ -22,7 +22,7 @@
 					]
 				}
 			],
-			"name" : "",
+			"name" : "Debug",
 			"projects" : 
 			[
 				{
@@ -44,21 +44,21 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "simple_planner_node::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-simple_planner_node-36b41ecb8cfbf3ee7b41.json",
+					"jsonFile" : "target-simple_planner_node-Debug-dd5a2f7503af52abea1c.json",
 					"name" : "simple_planner_node",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "simple_planner_uninstall::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-simple_planner_uninstall-e34e6cb53f6a1934bd00.json",
+					"jsonFile" : "target-simple_planner_uninstall-Debug-34f0321761b7b2fa121e.json",
 					"name" : "simple_planner_uninstall",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "uninstall::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-uninstall-6a67492b351c5c78ef89.json",
+					"jsonFile" : "target-uninstall-Debug-6a67492b351c5c78ef89.json",
 					"name" : "uninstall",
 					"projectIndex" : 0
 				}
@@ -68,7 +68,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner",
+		"build" : "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build",
 		"source" : "/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner"
 	},
 	"version" : 

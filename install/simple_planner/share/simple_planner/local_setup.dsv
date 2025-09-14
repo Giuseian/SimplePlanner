@@ -1,2 +1,1 @@
-source;share/simple_planner/environment/ament_prefix_path.sh
-source;share/simple_planner/environment/path.sh
+/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/build/simple_planner/ament_cmake_environment_hooks/local_setup.dsv

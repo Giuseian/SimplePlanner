@@ -252,7 +252,7 @@
 			"destination" : "share/ament_index/resource_index/package_run_dependencies",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/simple_planner"
+				"build/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/simple_planner"
 			],
 			"type" : "file"
 		},
@@ -262,7 +262,7 @@
 			"destination" : "share/ament_index/resource_index/parent_prefix_path",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/simple_planner"
+				"build/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/simple_planner"
 			],
 			"type" : "file"
 		},
@@ -282,7 +282,7 @@
 			"destination" : "share/simple_planner/environment",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_environment_hooks/ament_prefix_path.dsv"
+				"build/ament_cmake_environment_hooks/ament_prefix_path.dsv"
 			],
 			"type" : "file"
 		},
@@ -302,7 +302,7 @@
 			"destination" : "share/simple_planner/environment",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_environment_hooks/path.dsv"
+				"build/ament_cmake_environment_hooks/path.dsv"
 			],
 			"type" : "file"
 		},
@@ -312,7 +312,7 @@
 			"destination" : "share/simple_planner",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_environment_hooks/local_setup.bash"
+				"build/ament_cmake_environment_hooks/local_setup.bash"
 			],
 			"type" : "file"
 		},
@@ -322,7 +322,7 @@
 			"destination" : "share/simple_planner",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_environment_hooks/local_setup.sh"
+				"build/ament_cmake_environment_hooks/local_setup.sh"
 			],
 			"type" : "file"
 		},
@@ -332,7 +332,7 @@
 			"destination" : "share/simple_planner",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_environment_hooks/local_setup.zsh"
+				"build/ament_cmake_environment_hooks/local_setup.zsh"
 			],
 			"type" : "file"
 		},
@@ -342,7 +342,7 @@
 			"destination" : "share/simple_planner",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_environment_hooks/local_setup.dsv"
+				"build/ament_cmake_environment_hooks/local_setup.dsv"
 			],
 			"type" : "file"
 		},
@@ -352,7 +352,7 @@
 			"destination" : "share/simple_planner",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_environment_hooks/package.dsv"
+				"build/ament_cmake_environment_hooks/package.dsv"
 			],
 			"type" : "file"
 		},
@@ -362,7 +362,7 @@
 			"destination" : "share/ament_index/resource_index/packages",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_index/share/ament_index/resource_index/packages/simple_planner"
+				"build/ament_cmake_index/share/ament_index/resource_index/packages/simple_planner"
 			],
 			"type" : "file"
 		},
@@ -372,8 +372,8 @@
 			"destination" : "share/simple_planner/cmake",
 			"paths" : 
 			[
-				"build/simple_planner/ament_cmake_core/simple_plannerConfig.cmake",
-				"build/simple_planner/ament_cmake_core/simple_plannerConfig-version.cmake"
+				"build/ament_cmake_core/simple_plannerConfig.cmake",
+				"build/ament_cmake_core/simple_plannerConfig-version.cmake"
 			],
 			"type" : "file"
 		},
