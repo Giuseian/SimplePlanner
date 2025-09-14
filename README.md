@@ -93,7 +93,7 @@ The A* search algorithm is applied on the costmap to compute the optimal path.
 The cumulative cost of moving from a cell $i$ to a neighbor $j$ is:
 
 $$
-g(j) = g(i) + \Delta d(i,j) + \lambda \, c(j)
+g(j) = g(i) + \Delta d(i,j) + \lambda c(j)
 $$
 
 where:  
