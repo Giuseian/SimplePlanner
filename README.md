@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/assests/demo.gif" width="600" alt="Path planning in RViz"/>
+  <img src="/assests/demo.gif" width="600" alt="Path planning in RViz"/>
 </p>
 
 
@@ -225,11 +225,11 @@ The only difference lies in the cost function type.
 <table>
 <tr>
 <td align="center">
-  <img src="/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/assests/exponential.png" width="400"><br>
+  <img src="/assests/exponential.png" width="400"><br>
   <sub>(a) Exponential cost function</sub>
 </td>
 <td align="center">
-  <img src="/home/giuseppina-iannotti/Documents/GITHUB_PROJECTS/SimplePlanner/assests/zoom_inverse.png" width="400"><br>
+  <img src="/assests/zoom_inverse.png" width="400"><br>
   <sub>(b) Linear cost function</sub>
 </td>
 </tr>
