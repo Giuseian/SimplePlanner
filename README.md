@@ -47,7 +47,7 @@ Starting from occupied cells, a *distance map* is computed using a **multi-sourc
 For each free cell $i$, the algorithm assigns the Euclidean distance to the nearest obstacle:
 
 $$
-d(i) = \min_{j \in \mathcal{O}} \; \| p_i - p_j \|_2
+d(i) = \min_{j \in \mathcal{O}} \; \| p_i - p_j \|_^2
 $$
 
 where $\mathcal{O}$ is the set of obstacle cells and $p_i$ is the metric position of cell $i$.  
