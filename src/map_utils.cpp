@@ -1,5 +1,6 @@
-// Integration of STEP 3
 #include "simple_planner/map_utils.hpp"
+
+#include <cmath>
 #include "rclcpp/rclcpp.hpp"  // per timestamp
 
 namespace simple_planner::map_utils
@@ -43,14 +44,15 @@ geometry_msgs::msg::PoseStamped gridToWorld(int row, int col, const MapData & ma
   return pose;
 }
 
-std::vector<std::vector<int8_t>> to2DGrid(const MapData & map_data, bool treat_unknown_as_obstacle)
+std::vector<std::vector<int8_t>> to2DGrid(
+    const MapData & map_data,
+    bool treat_unknown_as_obstacle)
 {
-  std::vector<std::vector<int8_t>> grid(map_data.height, std::vector<int8_t>(map_data.width, 0));
+  std::vector<std::vector<int8_t>> grid(
+      map_data.height, std::vector<int8_t>(map_data.width, 0));
 
-  for (int row = 0; row < map_data.height; ++row)
-  {
-    for (int col = 0; col < map_data.width; ++col)
-    {
+  for (int row = 0; row < map_data.height; ++row) {
+    for (int col = 0; col < map_data.width; ++col) {
       int index = row * map_data.width + col;
       int8_t value = map_data.data[index];
 

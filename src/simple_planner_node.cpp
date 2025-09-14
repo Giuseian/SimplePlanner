@@ -1,9 +1,7 @@
-// Integration with additional checks + Step 5 (Cost Map + Visualization)
 #include "simple_planner/simple_planner.hpp"
-#include "simple_planner/map_utils.hpp"
-#include "simple_planner/cost_utils.hpp"
-#include "simple_planner/a_star.hpp"   // aggiungi l’include in alto
-
+#include <algorithm>
+#include <limits>
+#include <array>
 
 using std::placeholders::_1;
 using namespace simple_planner::map_utils;
@@ -18,7 +16,6 @@ SimplePlanner::SimplePlanner()
   this->declare_parameter("use_manual_start", false);
   this->get_parameter("use_manual_start", use_manual_start_);
 
-  // Parametri cost function (Step 5)
   this->declare_parameter("cost_function_type", "exponential");
   this->declare_parameter("inflation_radius", 0.5);
   this->declare_parameter("alpha", 5.0);
@@ -80,7 +77,7 @@ void SimplePlanner::mapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr ms
     return;
   }
 
-  occupancy_grid_ = to2DGrid(map_data_, true);  
+  occupancy_grid_ = to2DGrid(map_data_, true);
   map_received_ = true;
   map_version_++;
 
@@ -307,7 +304,6 @@ void SimplePlanner::timerCallback()
     return;
   }
 
-  // 🔹 Check prima della change detection
   if (start_cell_ == goal_cell_) {
     RCLCPP_WARN(this->get_logger(),
                 "Start and goal are the same cell (%d,%d). Skipping planning.",
@@ -316,7 +312,6 @@ void SimplePlanner::timerCallback()
     return;
   }
 
-  // --- Change detection ---
   bool map_changed   = (map_version_ != last_map_version_);
   bool start_changed = (start_cell_ != last_start_cell_);
   bool goal_changed  = (goal_cell_ != last_goal_cell_);
@@ -333,7 +328,6 @@ void SimplePlanner::timerCallback()
   last_start_cell_  = start_cell_;
   last_goal_cell_   = goal_cell_;
 }
-
 
 void SimplePlanner::publishPath(const std::vector<std::pair<int,int>>& path_cells)
 {
@@ -357,20 +351,6 @@ void SimplePlanner::publishPath(const std::vector<std::pair<int,int>>& path_cell
   RCLCPP_INFO(this->get_logger(), "Published path with %zu poses", path_msg.poses.size());
 }
 
-// void SimplePlanner::planOnce()
-// {
-//   RCLCPP_INFO(this->get_logger(),
-//               "Planning triggered: start=(%d,%d), goal=(%d,%d)",
-//               start_cell_.first, start_cell_.second,
-//               goal_cell_.first, goal_cell_.second);
-
-//   std::vector<std::pair<int,int>> dummy_path;
-//   dummy_path.push_back(start_cell_);
-//   dummy_path.push_back(goal_cell_);
-//   publishPath(dummy_path);
-// }
-
-
 void SimplePlanner::planOnce()
 {
   RCLCPP_INFO(this->get_logger(),
@@ -378,9 +358,8 @@ void SimplePlanner::planOnce()
               start_cell_.first, start_cell_.second,
               goal_cell_.first, goal_cell_.second);
 
-  // Parametri A*
-  bool use_diagonals = true;       // usiamo 8-neigh
-  float lambda_weight = 2.0f;      // peso del costo (tuning)
+  bool use_diagonals = true;
+  float lambda_weight = 2.0f;
 
   auto path_cells = simple_planner::a_star::planPath(
       start_cell_, goal_cell_,
@@ -400,7 +379,6 @@ void SimplePlanner::planOnce()
   publishPath(path_cells);
 }
 
-
 bool SimplePlanner::isInBounds(const std::pair<int,int>& cell) const
 {
   return cell.first >= 0 && cell.first < map_data_.height &&
@@ -412,10 +390,9 @@ bool SimplePlanner::isCellFree(const std::pair<int,int>& cell) const
   int r = cell.first;
   int c = cell.second;
 
-  if (r < 0 || r >= (int)occupancy_grid_.size()) return false;
-  if (c < 0 || c >= (int)occupancy_grid_[0].size()) return false;
+  if (r < 0 || r >= static_cast<int>(occupancy_grid_.size())) return false;
+  if (c < 0 || c >= static_cast<int>(occupancy_grid_[0].size())) return false;
 
   int8_t v = occupancy_grid_[r][c];
-  return (v == 0); // 0=free, 100/-1 = blocked
+  return (v == 0); // 0=free, 100/-1=blocked
 }
-

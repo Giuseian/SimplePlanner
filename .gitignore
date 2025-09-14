@@ -13,7 +13,7 @@ __pycache__/
 
 # CMake cache
 CMakeCache.txt
-CMakeFiles/
+CMakeFiles/okok
 
 # Misc
 *.swp

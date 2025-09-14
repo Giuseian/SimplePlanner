@@ -3,15 +3,13 @@
 
 #include <vector>
 #include <string>
-#include <limits>
-#include <queue>
-#include <cmath>
+
 #include "simple_planner/map_utils.hpp"
 
 namespace simple_planner {
 namespace cost_utils {
 
-using Grid2DInt = std::vector<std::vector<int8_t>>;
+using Grid2DInt   = std::vector<std::vector<int8_t>>;
 using Grid2DFloat = std::vector<std::vector<float>>;
 
 /// Calcola la distance map (in metri) dagli ostacoli usando BFS multi-source.

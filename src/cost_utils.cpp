@@ -1,5 +1,9 @@
 #include "simple_planner/cost_utils.hpp"
 
+#include <limits>
+#include <queue>
+#include <cmath>
+
 namespace simple_planner {
 namespace cost_utils {
 
