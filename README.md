@@ -205,7 +205,7 @@ Clone the repository inside a ROS2 workspace (e.g. `~/Documents/GITHUB_PROJECTS`
 
 ```bash
 cd ~/Documents/GITHUB_PROJECTS
-git clone <your-repo-url> SimplePlanner
+git clone https://github.com/Giuseian/SimplePlanner.git
 cd SimplePlanner
 ```
 
